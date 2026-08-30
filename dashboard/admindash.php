@@ -48,13 +48,14 @@ $data->execute();
 
 ?>
 
-  <!DOCTYPE html>
+<!DOCTYPE html>
 
 <html>
 <head>
 <title>Admin Dashboard</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -65,244 +66,632 @@ $data->execute();
 
 <body>
 
-<div class="d-flex">
+<div class="admin-layout">
 
-<!-- SIDEBAR -->
+<!-- ================= SIDEBAR ================= -->
 
-<div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-bg-dark vh-100">
-<h4 class="text-center mb-4">Admin Panel</h4>
+<aside class="sidebar bg-dark text-white d-flex flex-column">
 
-<ul class="nav nav-pills flex-column gap-2">
+    <!-- BRAND -->
 
-    <li>
-        <a href="#" class="nav-link active text-white">
-            <i class="bi bi-speedometer2 me-2"></i> Dashboard
-        </a>
-    </li>
+    <div class="sidebar-brand mb-4">
 
-    <!-- <li>
-        <a href="#" class="nav-link text-white">
-            <i class="bi bi-people me-2"></i> Users
-        </a>
-    </li>
+        <div class="d-flex align-items-center gap-2">
 
-    <li>
-        <a href="#" class="nav-link text-white">
-            <i class="bi bi-shop me-2"></i> Restaurants
-        </a>
-    </li>
+            <div class="brand-icon bg-primary rounded-3 d-flex align-items-center justify-content-center">
+                <i class="bi bi-shop"></i>
+            </div>
 
-    <li>
-        <a href="#" class="nav-link text-white">
-            <i class="bi bi-check2-square me-2"></i> Food Approvals
-        </a>
-    </li> -->
- <li class="position-relative">
+            <div>
+                <h5 class="mb-0 fw-bold">Admin Panel</h5>
+                <small class="text-secondary">
+                    Restaurant Management
+                </small>
+            </div>
 
-<a href="#notificationBox" data-bs-toggle="collapse" class="nav-link text-white">
-
-<i class="bi bi-bell"></i>
-
-Notifications
-
-<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-
-<?= $count ?>
-
-</span>
-
-</a>
-
-</li>
-
-    <!-- <li>
-        <a href="#" class="nav-link text-white">
-            <i class="bi bi-gear me-2"></i> Settings
-        </a>
-    </li> -->
-
-</ul>
-<div class="collapse mt-2" id="notificationBox">
-
-<div class="bg-white text-dark p-2 rounded">
-
-<h6>Notifications</h6>
-
-<?php if($notifications){ ?>
-
-<?php foreach($notifications as $item){ ?>
-
-<div class="border-bottom mb-2 pb-2">
-
-<strong>
-<?= htmlspecialchars($item['title']) ?>
-</strong>
-
-<p class="mb-1">
-<?= htmlspecialchars($item['message']) ?>
-</p>
-
-<small>
-<?= $item['created'] ?>
-</small>
-
-</div>
-
-<?php } ?>
-
-<?php } else { ?>
-
-<p>No notifications</p>
-
-<?php } ?>
-
-</div>
-</div>
-<hr>
-
-<a href="../login/logout.php" class="btn btn-danger mt-auto">
-    <i class="bi bi-box-arrow-right me-1"></i> Logout
-</a>
-
-</div>
-
-<!-- MAIN CONTENT -->
-
-<div class="p-4 w-100">
-<!-- HEADER -->
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h3 class="fw-bold">Dashboard</h3>
-    <span class="text-muted">Welcome, Admin</span>
-</div>
-
-<!-- STATS -->
-<div class="row g-4 mb-4">
-
-    <div class="col-md-4">
-        <div class="card shadow-sm p-3">
-            <h6>Total Users</h6>
-
-            <h3><?php echo $total_users;?></h3>
         </div>
+
     </div>
 
-    <div class="col-md-4">
-        <div class="card shadow-sm p-3">
-            <h6>Restaurants</h6>
-            <h3><?php echo $total_restaurants;?></h3>
-        </div>
-    </div>
 
-    <div class="col-md-4">
-        <div class="card shadow-sm p-3">
-            <h6>Pending Approvals</h6>
-            <h3><?php echo $pending_approvals;?></h3>
-        </div>
-    </div>
+    <!-- NAVIGATION -->
 
-</div>
+    <div class="sidebar-menu flex-grow-1">
 
-<!-- RESTAURANT SECTION -->
-<div class="card shadow-sm p-4">
+        <small class="text-uppercase text-secondary fw-semibold px-2">
+            Menu
+        </small>
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h5>Restaurants</h5>
-        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal">
-            + Add Restaurant
-        </button>
-    </div>
+        <ul class="nav nav-pills flex-column gap-2 mt-3">
 
-    <p class="text-muted">Register all  restaurants from here.</p>
+            <li class="nav-item">
 
-</div>
+                <a href="#" class="nav-link active text-white">
 
-<!-- USER INFO -->
-<div class="mt-4">
+                    <i class="bi bi-speedometer2 me-2"></i>
 
-    <!-- TABLE -->
-    <div class="card shadow p-4">
-        <h5 class="mb-3">Your Profile</h5>
+                    Dashboard
 
-        <table class="table table-bordered table-hover text-center table-striped-columns">
-            <thead class="table-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Restaurant</th>
-                    <th>foodItem</th>
-                     <th>price</th>
-                    <th>Email</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
+                </a>
 
-            <tbody>
-                <?php if ($user){
-                    foreach($user as $row)
-                 { ?>
-                   <tr>
-            <td><?= $row['id'] ?></td>
-            <td><?= htmlspecialchars($row['restaurant_name']) ?></td>
-            <td><?= htmlspecialchars($row['foodItem']) ?></td>
-            <td><?= htmlspecialchars($row['price']) ?></td>
-            <td><?= htmlspecialchars($row['email']) ?></td>
-            <td>
-                <a href="action.php?id=<?php echo $row['id']; ?>&STATUS=approve" class="btn btn-primary" data-id="<?= $row['id'] ?>">Approve</a>
-                <a href="action.php?id=<?php echo $row['id']; ?>&STATUS=reject"  class="btn btn-danger" data-id="<?= $row['id'] ?>">Reject</a>
-            </td>
-        </tr>
-                <?php } }else { ?>
-                    <tr>
-                        <td colspan="5">User not found</td>
-                    </tr>
+            </li>
+
+
+            <!-- NOTIFICATIONS -->
+
+            <li class="nav-item">
+
+                <a href="#notificationBox"
+                   data-bs-toggle="collapse"
+                   class="nav-link text-white">
+
+                    <i class="bi bi-bell me-2"></i>
+
+                    Notifications
+
+                    <span class="badge bg-danger rounded-pill ms-auto">
+
+                        <?= $count ?>
+
+                    </span>
+
+                </a>
+
+            </li>
+
+        </ul>
+
+
+        <!-- NOTIFICATION BOX -->
+
+        <div class="collapse mt-2" id="notificationBox">
+
+            <div class="notification-box bg-white text-dark rounded-3 p-3">
+
+                <h6 class="fw-bold mb-3">
+
+                    <i class="bi bi-bell me-2"></i>
+                    Notifications
+
+                </h6>
+
+
+                <?php if($notifications){ ?>
+
+                    <?php foreach($notifications as $item){ ?>
+
+                        <div class="notification-item border-bottom pb-2 mb-2">
+
+                            <strong class="d-block">
+
+                                <?= htmlspecialchars($item['title']) ?>
+
+                            </strong>
+
+                            <p class="mb-1 small">
+
+                                <?= htmlspecialchars($item['message']) ?>
+
+                            </p>
+
+                            <small class="text-muted">
+
+                                <?= $item['created'] ?>
+
+                            </small>
+
+                        </div>
+
+                    <?php } ?>
+
+                <?php } else { ?>
+
+                    <p class="text-muted small mb-0">
+
+                        No notifications
+
+                    </p>
+
                 <?php } ?>
-            </tbody>
-        </table>
-    </div>
-</div>
 
-</div>
-</div>
+            </div>
 
-<!-- MODAL -->
-
-<div class="modal fade" id="modal">
-<div class="modal-dialog">
-<div class="modal-content rounded-3 shadow">
-
-<div class="modal-header bg-primary text-white">
-    <h5 class="modal-title">Add Restaurant</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-</div>
-
-<form action="resregister.php" method="post">
-
-    <div class="modal-body">
-
-        <div class="mb-3">
-            <label class="form-label">Restaurant Name</label>
-            <input type="text" name="name" class="form-control" required>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input type="email" name="email" class="form-control" required>
-        </div>
-           <div class="mb-3">
-            <label class="form-label">Password</label>
-            <input type="password" name="password" class="form-control" required>
         </div>
 
     </div>
 
-    <div class="modal-footer">
-        <button type="submit" class="btn btn-primary w-100">Add Restaurant</button>
+
+    <!-- LOGOUT -->
+
+    <div class="sidebar-footer">
+
+        <hr class="border-secondary">
+
+        <a href="../login/logout.php"
+           class="btn btn-danger w-100">
+
+            <i class="bi bi-box-arrow-right me-1"></i>
+
+            Logout
+
+        </a>
+
     </div>
 
-</form>
+</aside>
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<main class="main-content">
+
+    <!-- HEADER -->
+
+    <div class="dashboard-header d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h3 class="fw-bold mb-1">
+                Dashboard
+            </h3>
+
+            <p class="text-muted mb-0">
+                Manage your restaurant platform
+            </p>
+
+        </div>
+
+        <div class="admin-welcome">
+
+            <span class="text-muted">
+                Welcome,
+            </span>
+
+            <strong>
+                Admin
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= STATS ================= -->
+
+    <div class="row g-4 mb-4">
+
+        <!-- TOTAL USERS -->
+
+        <div class="col-md-4">
+
+            <div class="stat-card card border-0 shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div>
+
+                            <p class="text-muted mb-2">
+                                Total Users
+                            </p>
+
+                            <h3 class="fw-bold mb-0">
+
+                                <?php echo $total_users; ?>
+
+                            </h3>
+
+                        </div>
+
+                        <div class="stat-icon bg-primary-subtle text-primary">
+
+                            <i class="bi bi-people-fill"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESTAURANTS -->
+
+        <div class="col-md-4">
+
+            <div class="stat-card card border-0 shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div>
+
+                            <p class="text-muted mb-2">
+                                Restaurants
+                            </p>
+
+                            <h3 class="fw-bold mb-0">
+
+                                <?php echo $total_restaurants; ?>
+
+                            </h3>
+
+                        </div>
+
+                        <div class="stat-icon bg-success-subtle text-success">
+
+                            <i class="bi bi-shop"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PENDING APPROVALS -->
+
+        <div class="col-md-4">
+
+            <div class="stat-card card border-0 shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div>
+
+                            <p class="text-muted mb-2">
+                                Pending Approvals
+                            </p>
+
+                            <h3 class="fw-bold mb-0">
+
+                                <?php echo $pending_approvals; ?>
+
+                            </h3>
+
+                        </div>
+
+                        <div class="stat-icon bg-warning-subtle text-warning">
+
+                            <i class="bi bi-hourglass-split"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= RESTAURANT SECTION ================= -->
+
+    <div class="card border-0 shadow-sm mb-4">
+
+        <div class="card-body p-4">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <div>
+
+                    <h5 class="fw-bold mb-1">
+                        Restaurant Management
+                    </h5>
+
+                    <p class="text-muted mb-0">
+                        Register and manage restaurants
+                    </p>
+
+                </div>
+
+                <button
+                    class="btn btn-success"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal">
+
+                    <i class="bi bi-plus-lg me-1"></i>
+
+                    Add Restaurant
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= FOOD APPROVAL TABLE ================= -->
+
+    <div class="card border-0 shadow-sm">
+
+        <div class="card-body p-4">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                <div>
+
+                    <h5 class="fw-bold mb-1">
+                        Food Approvals
+                    </h5>
+
+                    <p class="text-muted mb-0">
+                        Review restaurant food submissions
+                    </p>
+
+                </div>
+
+                <span class="badge bg-warning-subtle text-warning-emphasis px-3 py-2">
+
+                    <?= $pending_approvals ?> Pending
+
+                </span>
+
+            </div>
+
+
+            <!-- TABLE RESPONSIVE -->
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle text-center mb-0">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Restaurant</th>
+
+                            <th>Food Item</th>
+
+                            <th>Price</th>
+
+                            <th>Email</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                    <?php if ($user){ ?>
+
+                        <?php foreach($user as $row){ ?>
+
+                            <tr>
+
+                                <td class="fw-semibold">
+
+                                    <?= $row['id'] ?>
+
+                                </td>
+
+
+                                <td>
+
+                                    <?= htmlspecialchars($row['restaurant_name']) ?>
+
+                                </td>
+
+
+                                <td>
+
+                                    <?= htmlspecialchars($row['foodItem']) ?>
+
+                                </td>
+
+
+                                <td>
+
+                                    ₹<?= htmlspecialchars($row['price']) ?>
+
+                                </td>
+
+
+                                <td>
+
+                                    <?= htmlspecialchars($row['email']) ?>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div class="d-flex justify-content-center gap-2">
+
+                                        <a
+                                            href="action.php?id=<?php echo $row['id']; ?>&STATUS=approve"
+                                            class="btn btn-sm btn-success">
+
+                                            <i class="bi bi-check-lg me-1"></i>
+                                            Approve
+
+                                        </a>
+
+
+                                        <a
+                                            href="action.php?id=<?php echo $row['id']; ?>&STATUS=reject"
+                                            class="btn btn-sm btn-danger">
+
+                                            <i class="bi bi-x-lg me-1"></i>
+                                            Reject
+
+                                        </a>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        <?php } ?>
+
+                    <?php } else { ?>
+
+                        <tr>
+
+                            <td colspan="6" class="py-4 text-muted">
+
+                                No pending food approvals
+
+                            </td>
+
+                        </tr>
+
+                    <?php } ?>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
 
 </div>
+
+
+<!-- ================= ADD RESTAURANT MODAL ================= -->
+
+<div class="modal fade" id="modal" tabindex="-1">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content border-0 shadow">
+
+            <div class="modal-header bg-primary text-white">
+
+                <div>
+
+                    <h5 class="modal-title fw-bold">
+                        Add Restaurant
+                    </h5>
+
+                    <small>
+                        Register a new restaurant
+                    </small>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+
+            <form action="resregister.php" method="post">
+
+                <div class="modal-body p-4">
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Restaurant Name
+                        </label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            class="form-control"
+                            placeholder="Enter restaurant name"
+                            required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            class="form-control"
+                            placeholder="Enter restaurant email"
+                            required>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            name="password"
+                            class="form-control"
+                            placeholder="Enter password"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer border-0 px-4 pb-4">
+
+                    <button
+                        type="button"
+                        class="btn btn-light"
+                        data-bs-dismiss="modal">
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary px-4">
+
+                        <i class="bi bi-plus-lg me-1"></i>
+
+                        Add Restaurant
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
 </div>
-</div>
+
 
 </body>
 </html>

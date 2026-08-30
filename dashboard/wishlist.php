@@ -60,10 +60,13 @@ $foods=$stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="col-lg-4 col-md-6">
             <div class="card wishlist-card h-100 shadow-sm">
 
-                <!-- IMAGE -->
-                <img src="../assets/images/<?php echo $food['image']; ?>"  
-                     class="card-img-top wishlist-img" 
-                     alt="Food Image">
+              <?php
+$images = explode(",", $food['image']);
+?>
+
+<img src="../assets/images/<?php echo trim($images[0]); ?>"   
+     class="card-img-top wishlist-img"  
+     alt="<?php echo htmlspecialchars($food['foodItem']); ?>">
 
                 <!-- CARD BODY -->
                 <div class="card-body d-flex flex-column">

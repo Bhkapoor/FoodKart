@@ -77,42 +77,15 @@ if(isset($_SESSION['user_id'])){
                 <div id="message" class="mt-3 text-center"></div>
 
                 <p class="text-center mt-3">Already have an account?</p>
-                <button id="btn1" class="btn btn-outline-secondary w-100">Login</button>
+            <a href="login.php" class="btn btn-outline-secondary w-100">
+    Login
+</a>
             </div>
         </div>
     </div>
 
 
-    <!-- LOGIN CARD -->
-    <div class="row justify-content-center d-none" id="container2">
-        <div class="col-md-6">
-            <div class="card shadow p-4">
-                <h3 class="text-center mb-4">Login</h3>
 
-                <form id="userform2" >
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input  type="email" name="logemail" class="form-control">
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Password</label>
-                        <input type="password" name="logpassword" class="form-control">
-                    </div>
-
-                    <button class="btn btn-success w-100">Login</button>
-                </form>
-
-                <div id="message1" class="mt-3 text-center"></div>
-
-               <a href="#" id="btnF">Forgot Password?</a>
-                <p class="text-center mt-3">Don't have an account?</p>
-                <button id="btn2" class="btn btn-outline-secondary w-100">Register</button>
-            </div>
-        </div>
-    </div>
-
-</div>
 
 <!-- Forgot password -->
      <div class="row justify-content-center d-none" id="container3">

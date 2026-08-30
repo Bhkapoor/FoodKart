@@ -122,3 +122,840 @@ body {
          font-size: 14px;
          outline: none;   
         }
+
+      
+        
+
+
+        /* restaurant page */
+        /* =========================
+   GENERAL
+========================= */
+
+body {
+    margin: 0;
+    background: #f6f7fb;
+    color: #172033;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.dashboard-wrapper {
+    min-height: 100vh;
+    display: flex;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background: #ffffff;
+    border-right: 1px solid #e9e9e9;
+    padding: 25px 18px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+}
+
+
+/* Brand */
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 5px 8px 30px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.sidebar-brand h5 {
+    color: #172033;
+}
+
+.sidebar-brand small {
+    color: #8b93a1;
+    font-size: 12px;
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+    background: #ffc107;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+
+/* Navigation */
+
+.sidebar-nav {
+    margin-top: 30px;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    text-decoration: none;
+    color: #626b7a;
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.sidebar-link:hover {
+    background: #fff7d6;
+    color: #1d1d1d;
+}
+
+.sidebar-link.active {
+    background: #ffc107;
+    color: #151515;
+}
+
+.sidebar-icon {
+    width: 25px;
+    text-align: center;
+    font-size: 18px;
+}
+
+
+/* Logout */
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    background: #172033;
+    color: #ffffff;
+    padding: 11px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.logout-btn:hover {
+    background: #000000;
+    color: #ffffff;
+}
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.main-content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    padding: 35px 40px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.welcome-text {
+    color: #8a92a0;
+    font-size: 14px;
+}
+
+.dashboard-title {
+    margin: 0;
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: -0.5px;
+}
+
+.restaurant-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #ffffff;
+    padding: 8px 16px 8px 8px;
+    border-radius: 50px;
+    border: 1px solid #eeeeee;
+}
+
+.profile-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #ffc107;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+
+/* =========================
+   SUMMARY CARDS
+========================= */
+
+.summary-card {
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.summary-icon {
+    width: 50px;
+    height: 50px;
+    background: #fff5cf;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.pending-icon {
+    background: #fff3cd;
+}
+
+.approved-icon {
+    background: #d1e7dd;
+}
+
+.summary-label {
+    margin: 0 0 3px;
+    color: #858d9a;
+    font-size: 13px;
+}
+
+.summary-number {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   SECTION HEADER
+========================= */
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 35px 0 20px;
+}
+
+.section-title {
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.section-subtitle {
+    margin: 0;
+    color: #8a92a0;
+    font-size: 13px;
+}
+
+.add-food-btn {
+    background: #ffc107;
+    color: #161616;
+    border: none;
+    padding: 10px 19px;
+    border-radius: 9px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.add-food-btn:hover {
+    background: #e0a800;
+    color: #161616;
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   FOOD CARD
+========================= */
+
+.food-card {
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 15px;
+    overflow: hidden;
+    height: 100%;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+    transition: 0.25s ease;
+}
+
+.food-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Image */
+
+.food-image-wrapper {
+    height: 220px;
+    position: relative;
+    background: #eeeeee;
+    overflow: hidden;
+}
+
+.food-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: 0.3s ease;
+}
+
+.food-card:hover .food-image {
+    transform: scale(1.03);
+}
+
+.no-image {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999999;
+}
+
+
+/* Status */
+
+.status-position {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    backdrop-filter: blur(5px);
+}
+
+.status-approved {
+    background: #d1e7dd;
+    color: #0f5132;
+}
+
+.status-rejected {
+    background: #f8d7da;
+    color: #842029;
+}
+
+.status-pending {
+    background: #fff3cd;
+    color: #664d03;
+}
+
+
+/* Card body */
+
+.food-card-body {
+    padding: 19px;
+}
+
+.food-name {
+    font-size: 18px;
+    margin: 0;
+    font-weight: 700;
+    color: #172033;
+}
+
+.food-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: #d99a00;
+    white-space: nowrap;
+}
+
+.food-details {
+    margin-top: 15px;
+    padding-top: 13px;
+    border-top: 1px solid #eeeeee;
+}
+
+.food-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.detail-label {
+    color: #9a9fa8;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-value {
+    color: #4e5663;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+
+/* Approval info */
+
+.approval-info {
+    margin-top: 14px;
+    font-size: 12px;
+    color: #858d9a;
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty-state {
+    background: #ffffff;
+    border: 1px dashed #d8dce2;
+    border-radius: 15px;
+    text-align: center;
+    padding: 55px 20px;
+}
+
+.empty-icon {
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+.empty-state h5 {
+    font-weight: 700;
+}
+
+.empty-state p {
+    color: #8a92a0;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   ACCOUNT CARD
+========================= */
+
+.account-card {
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 14px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.account-card small {
+    display: block;
+    color: #999fa9;
+    font-size: 11px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.account-card h6 {
+    color: #343b47;
+    font-size: 14px;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.custom-modal {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.custom-modal .modal-header {
+    border-bottom: 1px solid #eeeeee;
+    padding: 20px 22px;
+}
+
+.custom-modal .modal-body {
+    padding: 22px;
+}
+
+.custom-modal .modal-footer {
+    border-top: 1px solid #eeeeee;
+    padding: 15px 22px;
+}
+
+.custom-modal .form-label {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.custom-modal .form-control {
+    border-color: #dfe2e7;
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+.custom-modal .form-control:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.15);
+}
+
+.custom-modal .input-group-text {
+    background: #f8f9fa;
+    border-color: #dfe2e7;
+}
+
+.submit-food-btn {
+    background: #ffc107;
+    border: none;
+    color: #161616;
+    font-weight: 600;
+    padding: 9px 20px;
+    border-radius: 8px;
+}
+
+.submit-food-btn:hover {
+    background: #e0a800;
+    color: #161616;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 991px) {
+
+    .sidebar {
+        width: 210px;
+    }
+
+    .main-content {
+        margin-left: 210px;
+        width: calc(100% - 210px);
+        padding: 25px;
+    }
+
+    .account-card {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 767px) {
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        min-height: auto;
+        height: auto;
+    }
+
+    .dashboard-wrapper {
+        display: block;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .sidebar-nav {
+        margin-top: 20px;
+    }
+
+    .sidebar-bottom {
+        margin-top: 20px;
+    }
+
+    .dashboard-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .restaurant-profile {
+        width: 100%;
+    }
+
+    .section-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .add-food-btn {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================
+   ADMIN DASHBOARD
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    background-color: #f5f7fb;
+    font-family: Arial, sans-serif;
+}
+
+/* MAIN LAYOUT */
+.admin-layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    width: 250px;
+    min-width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+/* Sidebar heading */
+.sidebar h4 {
+    font-weight: 700;
+}
+
+/* Sidebar links */
+.sidebar .nav-link {
+    border-radius: 8px;
+    padding: 10px 12px;
+    transition: all 0.2s ease;
+}
+
+.sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Active Dashboard */
+.sidebar .nav-link.active {
+    background-color: #0d6efd;
+}
+
+/* Notification badge */
+.sidebar .badge {
+    font-size: 11px;
+}
+
+/* Notification box */
+#notificationBox {
+    width: 100%;
+}
+
+#notificationBox > div {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.main-content {
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    margin-left: 250px;
+    padding: 30px !important;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.main-content h3 {
+    font-weight: 700;
+    color: #212529;
+}
+
+.main-content .text-muted {
+    color: #6c757d !important;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card {
+    border: 0;
+    border-radius: 12px;
+}
+
+.card.shadow-sm,
+.card.shadow {
+    border: 0;
+}
+
+.card h5,
+.card h6 {
+    font-weight: 600;
+}
+
+/* =========================
+   STAT CARDS
+========================= */
+
+.row.g-4 .card {
+    min-height: 120px;
+}
+
+.row.g-4 .card h3 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table {
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+
+.table th {
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.table td {
+    font-size: 14px;
+}
+
+.table .btn {
+    margin: 2px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal-content {
+    border: 0;
+    border-radius: 12px;
+}
+
+.modal-header {
+    border-bottom: 0;
+}
+
+.modal-footer {
+    border-top: 0;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .admin-layout {
+        display: block;
+    }
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        min-width: 100%;
+        height: auto;
+        min-height: auto;
+    }
+
+    .main-content {
+        width: 100%;
+        margin-left: 0;
+        padding: 20px !important;
+    }
+
+    .main-content > .d-flex {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 576px) {
+
+    .main-content {
+        padding: 15px !important;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .row.g-4 {
+        --bs-gutter-x: 1rem;
+        --bs-gutter-y: 1rem;
+    }
+}
+

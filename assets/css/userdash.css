@@ -1,0 +1,1065 @@
+/* =========================================
+   USER DASHBOARD
+========================================= */
+
+body {
+    background: #f7f8fa;
+    color: #202632;
+}
+
+
+/* =========================================
+   LAYOUT
+========================================= */
+
+.user-layout {
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.user-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    width: 250px;
+
+    background: #ffffff;
+
+    border-right: 1px solid #e9ecef;
+
+    padding: 24px 18px;
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 1000;
+}
+
+
+/* BRAND */
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 8px 24px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+.brand-icon {
+    width: 44px;
+    height: 44px;
+
+    border-radius: 12px;
+
+    background: #ffc107;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+
+    color: #1d1d1d;
+}
+
+.sidebar-brand h5 {
+    margin: 0;
+
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+.sidebar-brand small {
+    color: #999fa8;
+
+    font-size: 11px;
+}
+
+
+/* MENU */
+
+.sidebar-menu {
+    margin-top: 28px;
+}
+
+.menu-title {
+    font-size: 10px;
+
+    color: #a0a6af;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    padding-left: 12px;
+
+    margin-bottom: 10px;
+}
+
+
+/* SIDEBAR LINKS */
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    color: #69717d;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    padding: 12px 13px;
+
+    border-radius: 9px;
+
+    margin-bottom: 5px;
+
+    transition: 0.2s;
+}
+
+.sidebar-link i {
+    font-size: 17px;
+}
+
+.sidebar-link:hover {
+    background: #fff7d8;
+
+    color: #9b7100;
+}
+
+.sidebar-link.active {
+    background: #ffc107;
+
+    color: #191919;
+}
+
+
+/* SIDEBAR BOTTOM */
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+
+/* USER */
+
+.logged-user {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px 5px;
+
+    margin-bottom: 10px;
+}
+
+.user-avatar {
+    width: 38px;
+    height: 38px;
+
+    background: #fff1b9;
+
+    color: #956d00;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 700;
+}
+
+.logged-user strong {
+    display: block;
+
+    font-size: 12px;
+}
+
+.logged-user small {
+    color: #999fa8;
+
+    font-size: 10px;
+}
+
+
+/* LOGOUT */
+
+.logout-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 7px;
+
+    width: 100%;
+
+    background: #202632;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.logout-btn:hover {
+    background: #000000;
+
+    color: #ffffff;
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
+
+.user-main {
+    margin-left: 250px;
+
+    padding: 30px 40px;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.dashboard-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.welcome-small {
+    color: #999fa8;
+
+    font-size: 12px;
+
+    margin: 0 0 4px;
+}
+
+.dashboard-header h2 {
+    font-size: 27px;
+
+    font-weight: 700;
+
+    margin: 0;
+}
+
+
+/* HEADER ACTIONS */
+
+.header-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+.orders-btn {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    background: #ffc107;
+
+    color: #181818;
+
+    text-decoration: none;
+
+    padding: 9px 13px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.orders-btn:hover {
+    background: #e5a900;
+
+    color: #181818;
+}
+
+.header-icon-btn {
+    width: 39px;
+    height: 39px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+
+    color: #555d68;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 50%;
+
+    text-decoration: none;
+
+    font-size: 17px;
+
+    transition: 0.2s;
+}
+
+.header-icon-btn:hover {
+    background: #fff5ca;
+
+    color: #9b7100;
+}
+
+
+/* HEADER USER */
+
+.header-user {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-left: 4px;
+
+    background: #ffffff;
+
+    border: 1px solid #e9ebef;
+
+    border-radius: 30px;
+
+    padding: 5px 13px 5px 5px;
+}
+
+.header-avatar {
+    width: 36px;
+    height: 36px;
+
+    background: #ffc107;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 700;
+}
+
+.header-user small {
+    display: block;
+
+    color: #999fa8;
+
+    font-size: 9px;
+}
+
+.header-user strong {
+    font-size: 12px;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.food-hero {
+    min-height: 225px;
+
+    background: #fff3c8;
+
+    border: 1px solid #f2df9c;
+
+    border-radius: 17px;
+
+    padding: 32px 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    overflow: hidden;
+}
+
+.hero-label {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    background: #ffffff;
+
+    color: #997000;
+
+    padding: 6px 11px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    margin-bottom: 12px;
+}
+
+.food-hero h1 {
+    font-size: 30px;
+
+    line-height: 1.15;
+
+    font-weight: 700;
+
+    margin-bottom: 9px;
+}
+
+.food-hero h1 span {
+    color: #d89a00;
+}
+
+.food-hero p {
+    max-width: 520px;
+
+    color: #727272;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    margin-bottom: 17px;
+}
+
+.hero-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    background: #ffc107;
+
+    color: #171717;
+
+    text-decoration: none;
+
+    padding: 10px 16px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.hero-button:hover {
+    background: #e3a900;
+
+    color: #171717;
+}
+
+.hero-food-icon {
+    width: 145px;
+    height: 145px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #dfa100;
+
+    font-size: 68px;
+
+    margin-right: 55px;
+}
+
+
+/* =========================================
+   STATS
+========================================= */
+
+.stats-row {
+    margin-top: 23px;
+}
+
+.stat-card {
+    background: #ffffff;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 13px;
+
+    padding: 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.025);
+
+    height: 100%;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    transition: 0.2s;
+}
+
+.stat-link:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+}
+
+.stat-icon {
+    width: 47px;
+    height: 47px;
+
+    border-radius: 11px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 19px;
+}
+
+.food-icon {
+    background: #fff2bd;
+
+    color: #ad7b00;
+}
+
+.order-icon {
+    background: #dcf1e5;
+
+    color: #218653;
+}
+
+.cart-icon {
+    background: #f9dfdf;
+
+    color: #ad5050;
+}
+
+.stat-card span {
+    display: block;
+
+    color: #9097a1;
+
+    font-size: 11px;
+}
+
+.stat-card h3 {
+    margin: 3px 0 0;
+
+    font-size: 21px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   FOOD SECTION
+========================================= */
+
+.food-section {
+    margin-top: 37px;
+}
+
+.section-heading {
+    display: flex;
+
+    align-items: end;
+
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+.section-heading h3 {
+    font-size: 22px;
+
+    font-weight: 700;
+
+    margin: 0 0 4px;
+}
+
+.section-heading p {
+    margin: 0;
+
+    color: #969ca5;
+
+    font-size: 11px;
+}
+
+.food-count {
+    background: #ffffff;
+
+    border: 1px solid #e6e8eb;
+
+    border-radius: 20px;
+
+    padding: 6px 12px;
+
+    color: #777e88;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   FOOD CARD
+========================================= */
+
+.food-card {
+    height: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #e8eaed;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.035);
+
+    transition: 0.25s;
+}
+
+.food-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.09);
+}
+
+
+/* IMAGE */
+
+.food-image-wrapper {
+    position: relative;
+
+    height: 220px;
+
+    overflow: hidden;
+
+    background: #eeeeee;
+}
+
+.food-image {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.food-card:hover .food-image {
+    transform: scale(1.04);
+}
+
+
+/* APPROVED */
+
+.approved-badge {
+    position: absolute;
+
+    left: 12px;
+    top: 12px;
+
+    background: #dff3e7;
+
+    color: #1b7044;
+
+    border-radius: 20px;
+
+    padding: 6px 10px;
+
+    font-size: 9px;
+
+    font-weight: 700;
+}
+
+
+/* WISHLIST */
+
+.wishlist-btn {
+    position: absolute;
+
+    right: 12px;
+    top: 12px;
+
+    width: 37px;
+    height: 37px;
+
+    background: #ffffff;
+
+    color: #555;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.13);
+
+    transition: 0.2s;
+}
+
+.wishlist-btn:hover {
+    background: #ffc107;
+
+    color: #171717;
+}
+
+
+/* =========================================
+   CARD BODY
+========================================= */
+
+.food-card-body {
+    padding: 17px;
+}
+
+.food-title-row {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+.food-title-row h4 {
+    font-size: 17px;
+
+    font-weight: 700;
+
+    margin: 0;
+}
+
+.food-price {
+    color: #d39400;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.restaurant-name {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: 9px;
+
+    color: #7e858f;
+
+    font-size: 11px;
+}
+
+.restaurant-name i {
+    color: #d89b00;
+}
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.food-actions {
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 17px;
+}
+
+.add-cart-btn,
+.buy-now-btn {
+    flex: 1;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    padding: 9px 7px;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    transition: 0.2s;
+}
+
+.add-cart-btn {
+    background: #ffffff;
+
+    border: 1px solid #ffc107;
+
+    color: #9a7100;
+}
+
+.add-cart-btn:hover {
+    background: #fff4c8;
+
+    color: #866200;
+}
+
+.buy-now-btn {
+    background: #ffc107;
+
+    color: #171717;
+}
+
+.buy-now-btn:hover {
+    background: #e4a900;
+
+    color: #171717;
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.food-modal {
+    border: 0;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+}
+
+.food-modal .modal-header {
+    padding: 16px 20px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+.food-modal .modal-body {
+    padding: 8px;
+}
+
+.modal-food-image {
+    height: 500px;
+
+    object-fit: cover;
+
+    border-radius: 7px;
+}
+
+
+/* =========================================
+   EMPTY
+========================================= */
+
+.empty-food {
+    background: #ffffff;
+
+    border: 1px dashed #d8dce1;
+
+    border-radius: 14px;
+
+    text-align: center;
+
+    padding: 55px 20px;
+}
+
+.empty-icon {
+    width: 60px;
+    height: 60px;
+
+    background: #fff3c8;
+
+    color: #d49a00;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: auto auto 13px;
+
+    font-size: 25px;
+}
+
+.empty-food h4 {
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+.empty-food p {
+    color: #969ca5;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.dashboard-footer {
+    border-top: 1px solid #e5e7eb;
+
+    margin-top: 45px;
+
+    padding: 18px 2px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #969ca5;
+
+    font-size: 10px;
+}
+
+.dashboard-footer i {
+    color: #d49a00;
+
+    margin-right: 4px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .user-sidebar {
+        width: 220px;
+    }
+
+    .user-main {
+        margin-left: 220px;
+
+        padding: 25px;
+    }
+
+    .hero-food-icon {
+        margin-right: 15px;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .user-sidebar {
+        position: relative;
+
+        width: 100%;
+
+        min-height: auto;
+    }
+
+    .user-main {
+        margin-left: 0;
+
+        padding: 20px;
+    }
+
+    .dashboard-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .header-actions {
+        width: 100%;
+
+        flex-wrap: wrap;
+    }
+
+    .food-hero {
+        padding: 25px;
+    }
+
+    .food-hero h1 {
+        font-size: 25px;
+    }
+
+    .hero-food-icon {
+        display: none;
+    }
+
+    .dashboard-footer {
+        flex-direction: column;
+
+        gap: 7px;
+    }
+
+}

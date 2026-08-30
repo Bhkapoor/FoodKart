@@ -52,6 +52,9 @@ foreach($foods as $food){
     <div class="row">
 
         <?php foreach($foods as $food): ?>
+             <?php
+    $images = explode(",", $food['image']);
+    ?>
 
         <div class="col-md-4 mb-4">
             <div class="card shadow h-100">
@@ -59,7 +62,7 @@ foreach($foods as $food){
                 <div class="card-body">
                     
                         <h4 class="fw-bold">
-                        <img src="../assets/images/<?php echo $food['image']; ?>"  class="card-img-top" alt="" style="height:270px">
+                        <img src="../assets/images/<?php echo trim($images[0]); ?>"  class="card-img-top" alt="" style="height:270px">
                     </h4>
                     
                     <h4 class="fw-bold">

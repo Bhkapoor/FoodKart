@@ -1,11 +1,12 @@
 <?php 
 session_start();
-require_once  __DIR__.'/../common/config.php';
+require_once __DIR__.'/../common/config.php';
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
-  header("Location: ../login.php");
+    header("Location: ../login.php");
     exit;
 }
+
 $stmt = $pdo->prepare("
     SELECT food.*, users.name AS restaurant_name
     FROM food
@@ -15,207 +16,786 @@ $stmt = $pdo->prepare("
 
 $stmt->execute();
 
-$foods= $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+$foods = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-            <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Dashboard</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-      <!-- sweetalert -->
+
+    <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Your existing CSS -->
     <link rel="stylesheet" href="../assets/css/dashboard.css">
 
+    <!-- User Dashboard CSS -->
+    <link rel="stylesheet" href="../assets/css/userdash.css">
+
 </head>
+
+
 <body>
-    <div class="d-flex">
 
-<!-- SIDEBAR -->
 
-<div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-bg-info vh-100">
-<h4 class="text-center mb-4">User</h4>
+<div class="user-layout">
 
-<ul class="nav nav-pills flex-column gap-2">
 
-    <li>
-        <a href="#" class="nav-link active text-white">
-            <i class="bi bi-speedometer2 me-2"></i> Dashboard
-        </a>
-    </li>
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
 
-    <!-- <li>
-        <a href="#" class="nav-link text-white">
-            <i class="bi bi-people me-2"></i> Users
-        </a>
-    </li>
+    <aside class="user-sidebar">
 
-    <li>
-        <a href="#" class="nav-link text-white">
-            <i class="bi bi-fork-knife"></i>Approved foods
-        </a>
-    </li>
+        <!-- Logo -->
 
-    <li>
-        <a href="#" class="nav-link text-white">
-            <i class="bi bi-gear me-2"></i> Settings
-        </a>
-    </li> -->
+        <div class="sidebar-brand">
 
-</ul>
-
-<hr>
-
-<a href="../login/logout.php" class="btn btn-danger mt-auto">
-    <i class="bi bi-box-arrow-right me-1"></i> Logout
-</a>
-
-</div>
-
-<!-- MAIN CONTENT -->
-
-<div class="p-4 w-100">
-<!-- HEADER -->
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h3 class="fw-bold">Dashboard</h3>
-    <h4 class="text-muted"> <a href="myOrders.php?id=" class="btn btn-success">My orders</a>  <a href="wishlist.php?id=" class="tooltip-wrapper" data-tooltip="Wishlist"><i class="bi bi-heart"></i></a> <a href="cartview.php?id=" class="tooltip-wrapper" data-tooltip="View Cart"><i class="bi bi-cart"></i></a> Welcome, <?php echo $_SESSION['user_name'];?></h4>
-</div>
-
-<!-- STATS -->
-<div class="container mt-5">
-
-    <h2 class="fw-bold mb-4">Food Menu</h2>
-
-    <div class="row">
-
-        <?php foreach($foods as $food): ?>
-            <?php 
-         $images = explode(",", $food['image']);
-           ?>
-
-        <div class="col-md-4 mb-4">
-            <div class="card shadow h-100">
-
-                <div class="card-body">
-                    
-                        <h4 class="fw-bold">
-                      <img src="../assets/images/<?php echo $images[0]; ?>" class="card-img-top"style="height:270px; object-fit:cover; cursor:pointer;"data-bs-toggle="modal"
-data-bs-target="#foodModal<?php echo $food['id']; ?>"
->
-                    </h4>
-                    <div class="modal fade" id="foodModal<?php echo $food['id']; ?>" tabindex="-1">
-    
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h5 class="modal-title">
-                    <?php echo $food['foodItem']; ?>
-                </h5>
-
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <div class="brand-icon">
+                <i class="bi bi-shop"></i>
             </div>
 
-            <div class="modal-body">
+            <div>
+                <h5>FoodKart</h5>
+                <small>Food Ordering</small>
+            </div>
 
-                <div id="carousel<?php echo $food['id']; ?>" class="carousel slide">
+        </div>
 
-                    <div class="carousel-inner">
 
-                        <?php foreach($images as $index => $img): ?>
+        <!-- Navigation -->
 
-                            <div class="carousel-item <?php echo $index == 0 ? 'active' : ''; ?>">
+        <div class="sidebar-menu">
 
-                                <img 
-                                src="../assets/images/<?php echo $img; ?>" 
-                                class="d-block w-100"
-                                style="height:500px; object-fit:cover;"
+            <p class="menu-title">
+                MENU
+            </p>
+
+
+            <a href="userdash.php" class="sidebar-link active">
+
+                <i class="bi bi-grid-1x2-fill"></i>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="#foodMenu" class="sidebar-link">
+
+                <i class="bi bi-egg-fried"></i>
+
+                Food Menu
+
+            </a>
+
+
+            <!-- EXISTING LINK - NOT CHANGED -->
+
+            <a href="myOrders.php?id=" class="sidebar-link">
+
+                <i class="bi bi-bag-check"></i>
+
+                My Orders
+
+            </a>
+
+
+            <!-- EXISTING LINK - NOT CHANGED -->
+
+            <a href="wishlist.php?id=" class="sidebar-link">
+
+                <i class="bi bi-heart"></i>
+
+                Wishlist
+
+            </a>
+
+
+            <!-- EXISTING LINK - NOT CHANGED -->
+
+            <a href="cartview.php?id=" class="sidebar-link">
+
+                <i class="bi bi-cart3"></i>
+
+                My Cart
+
+            </a>
+
+        </div>
+
+
+        <!-- Bottom -->
+
+        <div class="sidebar-bottom">
+
+
+            <div class="logged-user">
+
+                <div class="user-avatar">
+
+                    <?php echo strtoupper(substr($_SESSION['user_name'], 0, 1)); ?>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        <?php echo htmlspecialchars($_SESSION['user_name']); ?>
+                    </strong>
+
+                    <small>
+                        Customer
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <a href="../login/logout.php" class="logout-btn">
+
+                <i class="bi bi-box-arrow-right"></i>
+
+                Logout
+
+            </a>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="user-main">
+
+
+        <!-- HEADER -->
+
+        <header class="dashboard-header">
+
+
+            <div>
+
+                <p class="welcome-small">
+                    Welcome back 👋
+                </p>
+
+                <h2>
+                    Dashboard
+                </h2>
+
+            </div>
+
+
+            <div class="header-actions">
+
+
+                <!-- EXISTING LINK -->
+
+                <a href="myOrders.php?id=" class="orders-btn">
+
+                    <i class="bi bi-bag-check"></i>
+
+                    My Orders
+
+                </a>
+
+
+                <!-- EXISTING LINK -->
+
+                <a
+                    href="wishlist.php?id="
+                    class="header-icon-btn"
+                    title="Wishlist">
+
+                    <i class="bi bi-heart"></i>
+
+                </a>
+
+
+                <!-- EXISTING LINK -->
+
+                <a
+                    href="cartview.php?id="
+                    class="header-icon-btn"
+                    title="View Cart">
+
+                    <i class="bi bi-cart3"></i>
+
+                </a>
+
+
+                <div class="header-user">
+
+                    <div class="header-avatar">
+
+                        <?php echo strtoupper(substr($_SESSION['user_name'], 0, 1)); ?>
+
+                    </div>
+
+                    <div>
+
+                        <small>Welcome</small>
+
+                        <strong>
+                            <?php echo htmlspecialchars($_SESSION['user_name']); ?>
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =========================
+             HERO SECTION
+        ========================== -->
+
+        <section class="food-hero">
+
+
+            <div class="hero-content">
+
+
+                <span class="hero-label">
+
+                    <i class="bi bi-stars"></i>
+
+                    Fresh & Delicious
+
+                </span>
+
+
+                <h1>
+
+                    Delicious food,
+                    <br>
+
+                    <span>delivered to you.</span>
+
+                </h1>
+
+
+                <p>
+
+                    Discover delicious meals from our restaurants
+                    and order your favourite food with ease.
+
+                </p>
+
+
+                <a href="#foodMenu" class="hero-button">
+
+                    Explore Menu
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+
+            </div>
+
+
+            <div class="hero-food-icon">
+
+                <i class="bi bi-egg-fried"></i>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             QUICK STATS
+        ========================== -->
+
+        <div class="row g-4 stats-row">
+
+
+            <div class="col-md-4">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon food-icon">
+
+                        <i class="bi bi-egg-fried"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Available Food
+                        </span>
+
+                        <h3>
+                            <?php echo count($foods); ?>
+                        </h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-4">
+
+                <a href="myOrders.php?id=" class="stat-card stat-link">
+
+                    <div class="stat-icon order-icon">
+
+                        <i class="bi bi-bag-check"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            My Orders
+                        </span>
+
+                        <h3>
+                            <i class="bi bi-arrow-right"></i>
+                        </h3>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+
+
+            <div class="col-md-4">
+
+                <a href="cartview.php?id=" class="stat-card stat-link">
+
+                    <div class="stat-icon cart-icon">
+
+                        <i class="bi bi-cart3"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            My Cart
+                        </span>
+
+                        <h3>
+                            <i class="bi bi-arrow-right"></i>
+                        </h3>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =========================
+             FOOD MENU
+        ========================== -->
+
+        <section id="foodMenu" class="food-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h3>
+                        Food Menu
+                    </h3>
+
+                    <p>
+                        Explore food from our approved restaurants.
+                    </p>
+
+                </div>
+
+
+                <span class="food-count">
+
+                    <?php echo count($foods); ?>
+
+                    Items
+
+                </span>
+
+            </div>
+
+
+
+            <!-- FOOD CARDS -->
+
+            <div class="row g-4">
+
+
+                <?php foreach($foods as $food): ?>
+
+                    <?php
+                    $images = explode(",", $food['image']);
+                    ?>
+
+
+                    <div class="col-md-6 col-xl-4">
+
+
+                        <div class="food-card">
+
+
+                            <!-- IMAGE -->
+
+                            <div class="food-image-wrapper">
+
+
+                                <img
+                                    src="../assets/images/<?php echo trim($images[0]); ?>"
+                                    class="food-image"
+                                    alt="<?php echo htmlspecialchars($food['foodItem']); ?>"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#foodModal<?php echo $food['id']; ?>"
                                 >
+
+
+                                <!-- APPROVED -->
+
+                                <span class="approved-badge">
+
+                                    <i class="bi bi-check-circle-fill"></i>
+
+                                    Approved
+
+                                </span>
+
+
+                                <!-- WISHLIST -->
+
+                                <a
+                                    href="wish.php?id=<?php echo $food['id']; ?>"
+                                    class="wishlist-btn"
+                                    title="Add to Wishlist">
+
+                                    <i class="bi bi-heart"></i>
+
+                                </a>
+
 
                             </div>
 
-                        <?php endforeach; ?>
+
+
+                            <!-- CARD BODY -->
+
+                            <div class="food-card-body">
+
+
+                                <div class="food-title-row">
+
+                                    <h4>
+                                        <?php echo htmlspecialchars($food['foodItem']); ?>
+                                    </h4>
+
+                                    <span class="food-price">
+
+                                        ₹<?php echo htmlspecialchars($food['price']); ?>
+
+                                    </span>
+
+                                </div>
+
+
+
+                                <!-- RESTAURANT -->
+
+                                <div class="restaurant-name">
+
+                                    <i class="bi bi-shop"></i>
+
+                                    <?php echo htmlspecialchars($food['restaurant_name']); ?>
+
+                                </div>
+
+
+
+                                <!-- ACTIONS -->
+
+                                <div class="food-actions">
+
+
+                                    <!-- EXISTING LINK -->
+
+                                    <a
+                                        href="cart.php?id=<?php echo $food['id']; ?>"
+                                        class="add-cart-btn">
+
+                                        <i class="bi bi-cart-plus"></i>
+
+                                        Add to Cart
+
+                                    </a>
+
+
+                                    <!-- EXISTING LINK -->
+
+                                    <a
+                                        href="order.php?id=<?php echo $food['id']; ?>"
+                                        class="buy-now-btn">
+
+                                        Buy Now
+
+                                    </a>
+
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
 
                     </div>
 
-                    <!-- Prev Button -->
-                    <button class="carousel-control-prev" 
-                    type="button" 
-                    data-bs-target="#carousel<?php echo $food['id']; ?>" 
-                    data-bs-slide="prev">
 
-                        <span class="carousel-control-prev-icon"></span>
 
-                    </button>
+                    <!-- =========================
+                         FOOD IMAGE MODAL
+                    ========================== -->
 
-                    <!-- Next Button -->
-                    <button class="carousel-control-next" 
-                    type="button" 
-                    data-bs-target="#carousel<?php echo $food['id']; ?>" 
-                    data-bs-slide="next">
+                    <div
+                        class="modal fade"
+                        id="foodModal<?php echo $food['id']; ?>"
+                        tabindex="-1"
+                    >
 
-                        <span class="carousel-control-next-icon"></span>
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
 
-                    </button>
+                            <div class="modal-content food-modal">
 
-                </div>
 
-            </div>
+                                <div class="modal-header">
 
-        </div>
 
-    </div>
+                                    <div>
 
-</div>
-                    
-                    <h4 class="fw-bold">
-                        <?php echo $food['foodItem']; ?>
-                    </h4>
+                                        <h5 class="modal-title fw-bold">
 
-                    <p>
-                        <strong>Restaurant:</strong>
-                        <?php echo $food['restaurant_name']; ?>
-                    </p>
+                                            <?php echo htmlspecialchars($food['foodItem']); ?>
 
-                    <p>
-                        <strong>Price:</strong>
-                        ₹<?php echo $food['price']; ?>
-                    </p>
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                       <p>
-                        <a href="cart.php?id=<?php echo $food['id']; ?>" 
-   class="btn btn-outline-warning add-to-cart-btn">
-   Add to cart
- </a>
-                    </p>
-                        <p>
-                        <a href="order.php?id=<?php echo $food['id']; ?>" class="btn btn-warning">Buy Now</a>
-                    </p>
-                         <p>
-                        <a href="wish.php?id=<?php echo $food['id']; ?>" 
-   class="btn btn-outline-warning add-to-wishlist-btn">&#9825;</a>
-                    </p>
+                                        </h5>
+
+                                        <small class="text-muted">
+
+                                            <i class="bi bi-shop"></i>
+
+                                            <?php echo htmlspecialchars($food['restaurant_name']); ?>
+
+                                        </small>
+
+                                    </div>
+
+
+                                    <button
+                                        type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="modal">
+                                    </button>
+
+
+                                </div>
+
+
+
+                                <div class="modal-body">
+
+
+                                    <div
+                                        id="carousel<?php echo $food['id']; ?>"
+                                        class="carousel slide"
+                                    >
+
+
+                                        <div class="carousel-inner">
+
+
+                                            <?php foreach($images as $index => $img): ?>
+
+
+                                                <div
+                                                    class="carousel-item <?php echo $index == 0 ? 'active' : ''; ?>"
+                                                >
+
+                                                    <img
+                                                        src="../assets/images/<?php echo trim($img); ?>"
+                                                        class="d-block w-100 modal-food-image"
+                                                        alt="<?php echo htmlspecialchars($food['foodItem']); ?>"
+                                                    >
+
+                                                </div>
+
+
+                                            <?php endforeach; ?>
+
+
+                                        </div>
+
+
+
+                                        <?php if(count($images) > 1): ?>
+
+
+                                            <button
+                                                class="carousel-control-prev"
+                                                type="button"
+                                                data-bs-target="#carousel<?php echo $food['id']; ?>"
+                                                data-bs-slide="prev"
+                                            >
+
+                                                <span class="carousel-control-prev-icon"></span>
+
+                                            </button>
+
+
+                                            <button
+                                                class="carousel-control-next"
+                                                type="button"
+                                                data-bs-target="#carousel<?php echo $food['id']; ?>"
+                                                data-bs-slide="next"
+                                            >
+
+                                                <span class="carousel-control-next-icon"></span>
+
+                                            </button>
+
+
+                                        <?php endif; ?>
+
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
                     </div>
-                </div>
+
+
+                <?php endforeach; ?>
+
+
+
+                <?php if(count($foods) == 0): ?>
+
+
+                    <div class="col-12">
+
+                        <div class="empty-food">
+
+                            <div class="empty-icon">
+
+                                <i class="bi bi-egg-fried"></i>
+
+                            </div>
+
+                            <h4>
+                                No food available
+                            </h4>
+
+                            <p>
+                                No approved food items are available right now.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                <?php endif; ?>
+
 
             </div>
-        </div>
 
-        <?php endforeach; ?>
 
-    </div>
+        </section>
+
+
+
+        <!-- FOOTER -->
+
+        <footer class="dashboard-footer">
+
+            <span>
+
+                <i class="bi bi-shield-check"></i>
+
+                All food items are admin approved
+
+            </span>
+
+
+            <span>
+
+                © <?php echo date('Y'); ?> FoodHub
+
+            </span>
+
+        </footer>
+
+
+    </main>
 
 </div>
 
-</div>
+
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <script src="../assets/js/jQuery.js"></script>
+
+
 </body>
+
 </html>

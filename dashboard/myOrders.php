@@ -49,6 +49,9 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endif; ?>
 
         <?php foreach($orders as $order): ?>
+                <?php
+    $images = explode(",", $order['image']);
+    ?>
             <div class="card shadow border-0 mb-4 p-3">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <span class="fw-bold">Order #<?php echo $order['order_id']; ?></span>
@@ -57,7 +60,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <hr>
             <div class="d-flex align-items-center gap-3">
-                <img src="../assets/images/<?php echo $order['image']; ?>" width="80" height="80"
+                <img src="../assets/images/<?php echo trim($images[0]); ?>" width="80" height="80"
                     style="object-fit:cover;border-radius:8px;">
 
                 <div class="flex-grow-1">

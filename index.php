@@ -66,7 +66,7 @@ if(isset($_SESSION['user_id'])){
                 <a class="navbar-brand d-flex align-items-center" href="#">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV9QHWDr02TbzDkCbbr641ABpQCUbZiuu0PA&s"
                         width="40" class="rounded-circle me-2">
-                    <strong>Welcome</strong>
+                    <strong>FoodKart</strong>
                 </a>
 
                 <!-- Toggle -->
@@ -82,16 +82,16 @@ if(isset($_SESSION['user_id'])){
                             <a class="nav-link active" href="#">Home</a>
                         </li>
 
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="#">About</a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
-                        </li>
+                        </li> -->
 
                         <li class="nav-item ms-3">
-                            <a href="login/form.php" class="btn btn-outline-primary">Login</a>
+                            <a href="login/login.php" class="btn btn-outline-primary">Login</a>
                         </li>
 
                         <li class="nav-item ms-2">
